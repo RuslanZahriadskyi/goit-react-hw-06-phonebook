@@ -1,7 +1,7 @@
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as contactsAction from '../../redux/contacts/contacts-action';
 import s from './ContactList.module.css';
-import { connect } from 'react-redux';
 
 function ContactList({ contacts, filterValue, deleteContacts }) {
   return (
@@ -37,9 +37,9 @@ const mapStateToProps = state => ({
   filterValue: state.contacts.filter,
 });
 
-const mapDispatchToProps = dispatch => ({
-  deleteContacts: id => dispatch(contactsAction.deleteContact(id)),
-});
+const mapDispatchToProps = {
+  deleteContacts: contactsAction.deleteContact,
+};
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(

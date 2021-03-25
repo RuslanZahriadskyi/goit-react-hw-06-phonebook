@@ -1,16 +1,19 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import s from './App.module.css';
+import * as contactsAction from './redux/contacts/contacts-action';
 import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
-import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {
+    const { showAllContacts } = this.props;
     const contacts = localStorage.getItem('contacts');
     const parseContacts = JSON.parse(contacts);
     if (parseContacts) {
-      this.setState({ contacts: parseContacts });
+      showAllContacts(parseContacts);
     }
   }
 
@@ -40,4 +43,12 @@ const mapStateToProps = state => ({
   contacts: state.contacts.items,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  showAllContacts: contactsAction.showAllContacts,
+};
+
+App.propTypes = {
+  showAllContacts: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

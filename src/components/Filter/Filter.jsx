@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 class Filter extends Component {
   handlerFilter = e => {
     const { value } = e.currentTarget;
-    const { findByFilter } = this.props;
-    findByFilter(value);
+    const { filterContacts } = this.props;
+    filterContacts(value);
   };
   render() {
     const { filterValue } = this.props;
@@ -27,12 +27,12 @@ class Filter extends Component {
 
 const mapStateToProps = state => ({ filterValue: state.contacts.filter });
 
-const mapDispatchToProps = dispatch => ({
-  findByFilter: text => dispatch(contactsAction.filterContacts(text)),
-});
+const mapDispatchToProps = {
+  filterContacts: contactsAction.filterContacts,
+};
 
 Filter.propTypes = {
-  findByFilter: PropTypes.func.isRequired,
+  filterContacts: PropTypes.func.isRequired,
   filterValue: PropTypes.string.isRequired,
 };
 
