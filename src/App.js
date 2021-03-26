@@ -12,9 +12,10 @@ class App extends Component {
     const { showAllContacts } = this.props;
     const contacts = localStorage.getItem('contacts');
     const parseContacts = JSON.parse(contacts);
-    if (parseContacts) {
-      showAllContacts(parseContacts);
-    }
+    console.log(parseContacts)
+   // if (parseContacts) {
+   //   showAllContacts(parseContacts);
+   //}
   }
 
   componentDidUpdate(prevProps, _) {
