@@ -8,7 +8,7 @@ const itemsReducers = createReducer([], {
   [actions.addContact]: (state, { payload }) => [...state, payload],
   [actions.deleteContact]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
-  [actions.showAllContacts]: (state, { payload }) => {console.log(state); [...payload]; console.log("state", state)},
+  [actions.showAllContacts]: (state, { payload }) => {console.log(state); return [...payload]},
 });
 
 const filterReducer = createReducer('', {
