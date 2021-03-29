@@ -5,10 +5,16 @@ import { createReducer } from '@reduxjs/toolkit';
 //Redux Toolkit
 
 const itemsReducers = createReducer([], {
-  [actions.addContact]: (state, { payload }) => [...state, payload],
+  [actions.addContact]: (state, { payload }) => {
+    console.log(state);
+    return [...state, payload];
+  },
   [actions.deleteContact]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
-  [actions.showAllContacts]: (_, { payload }) => [...payload],
+  [actions.showAllContacts]: (state, { payload }) => {
+    console.log(state);
+    return [...payload];
+  },
 });
 
 const filterReducer = createReducer('', {
